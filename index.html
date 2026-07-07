@@ -40,6 +40,14 @@
     <!-- HOME / HERO -->
     <header class="hero" id="home">
       <p class="eyebrow">Computer Science Senior · Alabama A&amp;M University</p>
+      <div class="profile-container">
+      <img
+        src="images/gabby_headshot.jpg"
+        alt="Gabriel Chambers"
+        class="profile-photo"
+        id="profilePhoto"
+      />
+      </div>
       <h1>Gabriel Chambers</h1>
       <p class="hero-role">Building AI systems that hold up under scrutiny — from graph neural networks in biomedical research to production tools shipped at Lockheed Martin.</p>
       <div class="hero-tags">
@@ -48,7 +56,7 @@
       </div>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Get in touch</a>
-        <a href="GabrielChambers_Resume.pdf" class="btn btn-ghost" download>Download résumé</a>
+        <a href="GabrielChambers_Resume.pdf" class="btn btn-ghost" download>Download resume</a>
       </div>
       <div class="hero-links">
         <a href="https://github.com/Gabbycodez" target="_blank" rel="noopener">GitHub ↗</a>
@@ -65,7 +73,7 @@
       </div>
       <div class="about-grid">
         <p class="about-lead">
-          I'm a Computer Science senior at Alabama A&amp;M University (GPA 3.38), currently splitting my time
+          I'm a Computer Science senior at Alabama A&amp;M University , currently splitting my time
           between biomedical AI research and a national ML fellowship. I care about models that are useful
           <em>and</em> trustworthy — that means as much attention on validation and pathway analysis as on
           architecture.
@@ -282,5 +290,15 @@
   </div>
 
   <script src="script.js"></script>
+  <div class="image-modal" id="imageModal">
+    <span class="close-modal">&times;</span>
+
+    <img
+        class="modal-image"
+        id="modalImage"
+        src="images/gabby_headshot.jpg"
+        alt="Gabriel Chambers"
+    />
+</div>
 </body>
 </html>

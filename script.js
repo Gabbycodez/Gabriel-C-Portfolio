@@ -111,3 +111,46 @@ navLinks.querySelectorAll('a').forEach(a => {
    FOOTER YEAR
    ============================================ */
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const profilePhoto = document.getElementById("profilePhoto");
+const imageModal = document.getElementById("imageModal");
+const modalImage = document.getElementById("modalImage");
+const closeModal = document.querySelector(".close-modal");
+
+if(profilePhoto){
+
+    profilePhoto.addEventListener("click",()=>{
+
+        imageModal.classList.add("active");
+
+        modalImage.src = profilePhoto.src;
+
+    });
+
+    closeModal.addEventListener("click",()=>{
+
+        imageModal.classList.remove("active");
+
+    });
+
+    imageModal.addEventListener("click",(e)=>{
+
+        if(e.target===imageModal){
+
+            imageModal.classList.remove("active");
+
+        }
+
+    });
+
+    document.addEventListener("keydown",(e)=>{
+
+        if(e.key==="Escape"){
+
+            imageModal.classList.remove("active");
+
+        }
+
+    });
+
+}
