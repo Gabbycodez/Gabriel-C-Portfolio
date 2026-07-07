@@ -107,6 +107,35 @@ navLinks.querySelectorAll('a').forEach(a => {
   });
 });
 
+const sections = document.querySelectorAll("section");
+const navItems = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const top = section.offsetTop - 150;
+
+        if (window.scrollY >= top) {
+            current = section.id;
+        }
+
+    });
+
+    navItems.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
 /* ============================================
    FOOTER YEAR
    ============================================ */
