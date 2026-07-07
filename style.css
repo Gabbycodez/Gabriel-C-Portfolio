@@ -183,7 +183,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; }
     z-index: 1001;
     margin:15px auto 0;
     
-    padding: 25px 25px;
+    padding: 15px 20px;
 
     width:min(1000px,calc(65% - 20px));
 
@@ -638,5 +638,153 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; }
 
         opacity:1;
     }
+
+}
+
+/* ============================================
+   FEATURED JOURNEY
+============================================ */
+
+.journey-intro{
+
+    max-width:650px;
+
+    color:var(--ink-muted);
+
+    margin-top:15px;
+
+}
+
+.journey-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+.journey-card{
+
+    background:white;
+
+    border:1px solid var(--line);
+
+    border-radius:24px;
+
+    padding:28px;
+
+    transition:.35s ease;
+
+    box-shadow:
+        0 10px 25px rgba(232,85,139,.08);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.journey-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 20px 45px rgba(232,85,139,.18);
+
+}
+
+.journey-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-90px;
+
+    right:-90px;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,192,217,.18);
+
+}
+
+.journey-icon{
+
+    font-size:46px;
+
+    margin-bottom:18px;
+
+}
+
+.journey-date{
+
+    font-family:var(--font-mono);
+
+    color:var(--pink-accent);
+
+    font-size:13px;
+
+}
+
+.journey-card h3{
+
+    margin:10px 0;
+
+    font-size:24px;
+
+}
+
+.journey-card p{
+
+    color:var(--ink-muted);
+
+    margin-bottom:24px;
+
+}
+
+.journey-stats{
+
+    display:flex;
+
+    gap:20px;
+
+    font-size:14px;
+
+    margin-bottom:20px;
+
+}
+
+.journey-btn{
+
+    display:inline-flex;
+
+    text-decoration:none;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:var(--pink-tint);
+
+    color:var(--pink-accent);
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.journey-btn:hover{
+
+    background:var(--pink-accent);
+
+    color:white;
 
 }
