@@ -42,6 +42,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a { color: var(--pink-accent-dk); }
@@ -510,6 +511,16 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; }
 @media (max-width: 720px) {
   :root { --frame: 34px; --bubble-d: 22px; --bubble-gap: 32px; }
 
+  .nav {
+    width: calc(100% - 20px);
+    padding: 12px 16px;
+  }
+
+  .profile-photo {
+    width: min(220px, 60vw);
+    height: min(220px, 60vw);
+  }
+
   .nav-links {
     position: fixed;
     top: 76px;
@@ -659,7 +670,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; }
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(min(280px, 100%),1fr));
 
     gap:30px;
 

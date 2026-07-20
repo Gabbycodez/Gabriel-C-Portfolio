@@ -68,12 +68,22 @@ function fillRow(el, count, prefix) {
   }
 }
 
+// Track the last-used counts so we skip rebuilding the bubble DOM when
+// nothing actually changed (e.g. iOS Safari firing "resize" from the
+// address bar hiding/showing while scrolling, not an actual size change).
+let lastHCount = null;
+let lastVCount = null;
+
 function layoutBubbles() {
   const frame = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--frame')) || 56;
   const gap = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bubble-gap')) || 52;
 
   const hCount = Math.max(3, Math.floor((window.innerWidth - frame * 2) / gap));
   const vCount = Math.max(3, Math.floor((window.innerHeight - frame * 2) / gap));
+
+  if (hCount === lastHCount && vCount === lastVCount) return;
+  lastHCount = hCount;
+  lastVCount = vCount;
 
   fillRow(rows.top, hCount, 'top');
   fillRow(rows.bottom, hCount, 'bottom');
@@ -110,31 +120,37 @@ navLinks.querySelectorAll('a').forEach(a => {
 const sections = document.querySelectorAll("section");
 const navItems = document.querySelectorAll(".nav-links a");
 
+// Throttle scroll-driven work with requestAnimationFrame so we do at most
+// one pass per frame instead of once per scroll event (which fires very
+// often during touch/momentum scrolling on mobile).
+let scrollTicking = false;
+
+function updateActiveNavLink() {
+  let current = "";
+
+  sections.forEach(section => {
+    const top = section.offsetTop - 150;
+    if (window.scrollY >= top) {
+      current = section.id;
+    }
+  });
+
+  navItems.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+
+  scrollTicking = false;
+}
+
 window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const top = section.offsetTop - 150;
-
-        if (window.scrollY >= top) {
-            current = section.id;
-        }
-
-    });
-
-    navItems.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-        }
-
-    });
-
-});
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(updateActiveNavLink);
+  }
+}, { passive: true });
 
 /* ============================================
    FOOTER YEAR
